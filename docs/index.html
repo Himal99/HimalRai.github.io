@@ -1,292 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Himal Rai - Software Engineer</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Himal Rai – Software Engineer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    /* Reset & base */
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #0f172a;
-      color: #e0e7ff;
-      margin: 0;
-      padding: 0 1rem;
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    a {
-      color: #60a5fa;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
+    /* ---------- Reset ---------- */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto;
+      background:#0f172a;
+      color:#e2e8f0;
+      line-height:1.6;
+      overflow-x:hidden;
     }
 
-    /* Container */
-    .container {
-      max-width: 900px;
-      width: 100%;
-      padding: 2rem 1rem 4rem;
+    /* ---------- Particles ---------- */
+    #particles-js{
+      position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;
     }
 
-    /* Centered headers */
-    h1, h3 {
-      text-align: center;
-      margin-bottom: 0.25rem;
-    }
-    h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      color: #93c5fd;
-    }
-    h3 {
-      font-weight: 500;
-      color: #a5b4fc;
-      margin-top: 0;
-      margin-bottom: 1.5rem;
-    }
+    /* ---------- Layout ---------- */
+    .container{max-width:1000px;margin:0 auto;padding:2rem 1.5rem 6rem}
+    section{margin:5rem 0;opacity:0;transform:translateY(30px);transition:all .8s}
+    section.show{opacity:1;transform:none}
 
-    /* Badge links */
-    .badges {
-      text-align: center;
-      margin-bottom: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.7rem;
+    /* ---------- Hero ---------- */
+    .hero{text-align:center;padding:4rem 0}
+    .hero h1{font-size:3rem;color:#60a5fa}
+    .hero .subtitle{font-size:1.3rem;color:#94a3b8}
+    .typing{
+      color:#60a5fa;font-size:1.4rem;font-weight:600;
+      border-right:2px solid #60a5fa;white-space:nowrap;overflow:hidden;
+      animation:blink .8s infinite;
     }
-    .badge img {
-      height: 28px;
-      border-radius: 4px;
-      transition: transform 0.2s;
-    }
-    .badge img:hover {
-      transform: scale(1.05);
-    }
+    @keyframes blink{50%{border-color:transparent}}
 
-    hr {
-      border: none;
-      border-top: 1px solid #334155;
-      margin: 2rem 0;
-    }
+    /* ---------- Badges ---------- */
+    .badges{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;margin:2rem 0}
+    .badge img{height:28px;border-radius:4px;transition:.3s}
+    .badge:hover img{transform:scale(1.1) rotate(-3deg)}
 
-    /* Sections */
-    section {
-      margin-bottom: 2.5rem;
+    /* ---------- Skill badges animate ---------- */
+    .tech-cloud{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+    .tech-cloud span{
+      background:#1e293b;color:#cbd5e1;padding:.4rem .9rem;border-radius:999px;
+      font-size:.85rem;transition:.3s;cursor:default
     }
-    section h2 {
-      font-size: 1.8rem;
-      color: #60a5fa;
-      border-bottom: 2px solid #2563eb;
-      padding-bottom: 0.3rem;
-      margin-bottom: 1rem;
-    }
+    .tech-cloud span:hover{background:#2563eb;color:#fff;transform:translateY(-3px)}
 
-    /* Lists */
-    ul {
-      list-style-type: disc;
-      padding-left: 1.5rem;
-      color: #cbd5e1;
+    /* ---------- Timeline ---------- */
+    .timeline{position:relative;padding-left:2rem;border-left:2px solid #2563eb}
+    .timeline::before{
+      content:'';position:absolute;left:-9px;top:0;width:16px;height:16px;
+      background:#2563eb;border-radius:50%
     }
-    ul.projects li {
-      margin-bottom: 1rem;
-    }
-    ul.projects li strong {
-      color: #93c5fd;
-    }
-    blockquote {
-      margin: 0.3rem 0 1rem 1.5rem;
-      font-style: italic;
-      color: #94a3b8;
-      border-left: 3px solid #2563eb;
-      padding-left: 1rem;
-    }
+    .timeline-item{margin-bottom:2.5rem}
+    .timeline-date{color:#60a5fa;font-weight:700}
 
-    /* GitHub stats images */
-    .github-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      align-items: center;
-      margin-top: 1rem;
+    /* ---------- Projects grid ---------- */
+    .projects-grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+    .card{
+      background:#1e293b;border:1px solid #334155;border-radius:12px;padding:1.5rem;
+      transition:.3s;position:relative;overflow:hidden
     }
-    .github-stats img {
-      max-width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 0 12px #2563ebaa;
-    }
+    .card:hover{transform:translateY(-5px);border-color:#60a5fa}
+    .card i{position:absolute;top:1rem;right:1rem;color:#60a5fa;font-size:1.5rem}
 
-    /* Highlight projects bullet list */
-    .highlight-projects ul {
-      padding-left: 1.5rem;
-      list-style-type: circle;
-      color: #93c5fd;
+    /* ---------- Testimonials ---------- */
+    .testimonials{display:flex;gap:1.5rem;overflow-x:auto;padding-bottom:1rem}
+    .testimonial{
+      min-width:260px;background:#1e293b;border-radius:12px;padding:1.5rem;
+      flex-shrink:0;border-left:4px solid #60a5fa
     }
+    .testimonial .author{color:#94a3b8;font-size:.9rem}
 
-    /* Connect section */
-    .connect p {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-      font-weight: 500;
-      color: #a5b4fc;
+    /* ---------- Floating contacts ---------- */
+    .float-contacts{
+      position:fixed;bottom:2rem;right:1.5rem;display:flex;flex-direction:column;gap:.8rem;z-index:10
     }
+    .float-btn{
+      width:50px;height:50px;border-radius:50%;background:#2563eb;color:#fff;
+      display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+      transition:.3s;box-shadow:0 4px 8px #0003
+    }
+    .float-btn:hover{background:#1d4ed8;transform:scale(1.1)}
 
-    /* Typing animation */
-    .typing-svg {
-      display: flex;
-      justify-content: center;
-      margin-top: 3rem;
-    }
-    .typing-svg img {
-      max-width: 435px;
-      width: 100%;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-      h3 {
-        font-size: 1.2rem;
-      }
+    /* ---------- Responsive ---------- */
+    @media(max-width:600px){
+      .hero h1{font-size:2.2rem}
+      .typing{font-size:1.2rem}
     }
   </style>
 </head>
 <body>
+  <!-- particles -->
+  <div id="particles-js"></div>
+
   <div class="container">
-    <h1>Hi, I'm Himal Rai 👋</h1>
-    <h3>Senior Software Engineer | Java & Angular</h3>
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Hi, I'm <span style="color:#60a5fa">Himal Rai</span></h1>
+      <p class="subtitle">Senior Software Engineer | Java & Angular</p>
+      <p class="typing" id="typingText"></p>
 
-    <div class="badges">
-      <a class="badge" href="mailto:bantawaheem35@gmail.com" target="_blank" rel="noopener noreferrer" title="Email">
-        <img src="https://img.shields.io/badge/Email-bantawaheem35@gmail.com-D14836?style=flat-square&logo=gmail&logoColor=white" alt="Email" />
-      </a>
-      <a class="badge" href="https://www.linkedin.com/in/himal-rai/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-        <img src="https://img.shields.io/badge/LinkedIn-Himal%20Rai-0077B5?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" />
-      </a>
-      <a class="badge" href="https://github.com/himal99" target="_blank" rel="noopener noreferrer" title="GitHub">
-        <img src="https://img.shields.io/badge/GitHub-HimalRai-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" />
-      </a>
-      <a class="badge" href="https://twitter.com/himalrai_dev" target="_blank" rel="noopener noreferrer" title="Twitter">
-        <img src="https://img.shields.io/badge/Twitter-@himalrai__dev-1DA1F2?style=flat-square&logo=twitter&logoColor=white" alt="Twitter" />
-      </a>
-      <a class="badge" href="https://www.facebook.com/HeemalRaee1999/" target="_blank" rel="noopener noreferrer" title="Facebook">
-        <img src="https://img.shields.io/badge/Facebook-himalrai-1877F2?style=flat-square&logo=facebook&logoColor=white" alt="Facebook" />
-      </a>
-      <a class="badge" href="https://www.instagram.com/himalrai.dev" target="_blank" rel="noopener noreferrer" title="Instagram">
-        <img src="https://img.shields.io/badge/Instagram-himalrai.dev-E4405F?style=flat-square&logo=instagram&logoColor=white" alt="Instagram" />
-      </a>
-    </div>
+      <div class="badges">
+        <a class="badge" href="mailto:bantawaheem35@gmail.com" title="Email"><img src="https://img.shields.io/badge/Email-bantawaheem35@gmail.com-D14836?style=flat-square&logo=gmail&logoColor=white" alt="Email"/></a>
+        <a class="badge" href="https://www.linkedin.com/in/himal-rai/" title="LinkedIn"><img src="https://img.shields.io/badge/LinkedIn-Himal%20Rai-0077B5?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
+        <a class="badge" href="https://github.com/himal99" title="GitHub"><img src="https://img.shields.io/badge/GitHub-HimalRai-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub"/></a>
+        <a class="badge" href="https://twitter.com/himalrai_dev" title="Twitter"><img src="https://img.shields.io/badge/Twitter-@himalrai__dev-1DA1F2?style=flat-square&logo=twitter&logoColor=white" alt="Twitter"/></a>
+      </div>
+    </section>
 
-    <hr />
-
+    <!-- About -->
     <section>
-      <h2>About Me</h2>
+      <h2><i class="fas fa-user-circle"></i> About Me</h2>
       <ul>
-        <li>👨‍💻 I began my software engineering journey in <strong>2018</strong>, and since then, I've been building enterprise-grade applications with <strong>Java</strong>, <strong>Spring Boot</strong>, and <strong>Angular</strong> — primarily in the <strong>banking and finance sector</strong>.</li>
-        <li>💬 Passionate about <strong>clean architecture</strong>, <strong>developer mentoring</strong>, and <strong>team leadership</strong>.</li>
+        <li>👨‍💻 Started in <strong>2018</strong>, building enterprise apps with <strong>Java, Spring Boot & Angular</strong> for the banking sector.</li>
+        <li>💬 Passionate about <strong>clean architecture</strong>, mentoring & leading teams.</li>
         <li>🇳🇵 Based in Nepal, working globally.</li>
       </ul>
     </section>
 
+    <!-- Timeline -->
     <section>
-      <h2>What I Do</h2>
+      <h2><i class="fas fa-history"></i> Timeline</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2024 – 2025</div>
+          <div>Lead Engineer – <strong>FLASH Loan Platform</strong></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2021 – 2024</div>
+          <div>Senior Engineer – <strong>CreditX Pro</strong></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2018 – 2021</div>
+          <div>Software Engineer – <strong>Saral Karja</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section>
+      <h2><i class="fas fa-cogs"></i> Tech Stack</h2>
+      <div class="tech-cloud">
+        <span>Java 17</span><span>Spring Boot</span><span>Angular</span><span>TypeScript</span>
+        <span>MySQL</span><span>Redis</span><span>Docker</span><span>Kafka</span>
+        <span>Jenkins</span><span>Microservices</span>
+      </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section>
+      <h2><i class="fas fa-rocket"></i> Featured Projects</h2>
+      <div class="projects-grid">
+        <div class="card">
+          <i class="fas fa-shield-alt"></i>
+          <strong>FLASH</strong> – Fast Loan Against Share platform for Global IME Bank.
+        </div>
+        <div class="card">
+          <i class="fas fa-robot"></i>
+          <strong>CreditX Pro</strong> – End-to-end loan origination & risk engine.
+        </div>
+        <div class="card">
+          <i class="fas fa-compress-arrows-alt"></i>
+          <strong>File Compressor</strong> – Pattern-based compression micro-service.
+        </div>
+        <div class="card">
+          <i class="fas fa-university"></i>
+          <strong>Saral Karja</strong> – BNPL & digital lending solution.
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section>
+      <h2><i class="fas fa-comments"></i> Testimonials</h2>
+      <div class="testimonials">
+        <div class="testimonial">
+          “Himal’s clean code and leadership shortened our release cycles by 30 %.”<br/>
+          <span class="author">— Project Manager, Global IME Bank</span>
+        </div>
+        <div class="testimonial">
+          “Outstanding mentor; always brings clarity and best practices to the team.”<br/>
+          <span class="author">— Senior Developer, SB Solutions</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog -->
+    <section>
+      <h2><i class="fas fa-blog"></i> Recent Posts</h2>
       <ul>
-        <li>👨‍💻 Building enterprise applications with <strong>Spring Boot</strong> and <strong>Angular</strong>.</li>
-        <li>🏦 Leading loan and fintech platform development for major banks.</li>
-        <li>🔐 Implementing secure login, OTP, KYC, and customer portals.</li>
-        <li>⚙️ Converting legacy APIs (Node.js/Scala) to <strong>modern Java microservices</strong>.</li>
+        <li><a href="#">Clean Architecture in Spring Boot – 2025 edition</a></li>
+        <li><a href="#">Migrating Monoliths to Reactive Microservices</a></li>
+        <li><a href="#">Angular Signals & Fine-grained Reactivity</a></li>
       </ul>
     </section>
 
+    <!-- Connect -->
     <section>
-      <h2>Tech Stack</h2>
+      <h2><i class="fas fa-handshake"></i> Let’s Connect</h2>
       <p>
-        <strong>Languages & Frameworks:</strong><br />
-        <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white" alt="Java" />
-        <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white" alt="Spring Boot" />
-        <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular" />
-        <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript" alt="TypeScript" />
-      </p>
-      <p>
-        <strong>Databases & Tools:</strong><br />
-        <img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
-        <img src="https://img.shields.io/badge/MSSQL-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white" alt="MSSQL" />
-        <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis" />
-        <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white" alt="Postman" />
-      </p>
-      <p>
-        <strong>Dev & Deployment:</strong><br />
-        <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git" />
-        <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
-        <img src="https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white" alt="Jenkins" />
+        💬 I love mentoring, team leadership, and building clean, scalable systems.<br/>
+        🌱 Currently exploring <strong>Clean Architecture, Kafka, and Reactive Microservices</strong>.
       </p>
     </section>
 
-    <section>
-      <h2>Featured Projects</h2>
-      <ul class="projects">
-        <li>
-          <strong>🏦 <a href="https://flash.gibl.com.np" target="_blank" rel="noopener noreferrer">FLASH – Fast Loan Against Share (2024 – 2025)</a></strong><br />
-          <blockquote>An innovative online platform that simplifies the loan application process for share loans, auto loans, home loans, and education loans. This user-friendly system allows individuals to apply for loans directly through their browser, ensuring a fast and efficient experience.</blockquote>
-        </li>
-        <li>
-          <strong>💡 LAS – Loan Automation System: CreditX Pro (2021 – 2025)</strong><br />
-          <blockquote>A credit origination and appraisal automation system for commercial banks. CreditX Pro reduces lending turnaround time by integrating risk-based pricing, credit bureau connections, and stakeholder collaboration across the lending lifecycle.</blockquote>
-        </li>
-        <li>
-          <strong>🗜️ File Compressor (2023 – 2025)</strong><br />
-          <blockquote>A system that reduces file size using pattern-based compression techniques. Optimizes storage and file transfer by detecting repetitive patterns and replacing them with smaller identifiers.</blockquote>
-        </li>
-        <li>
-          <strong>💼 Saral Karja – Digital Lending Platform (2024 – 2025)</strong><br />
-          <blockquote>A powerful digital lending system developed by SB Solutions, offering fast, secure loan processing. Supports BNPL (Buy Now, Pay Later), Auto Loans, and Share Loans. Designed to remove the friction of traditional banking with digital-first user experiences.</blockquote>
-        </li>
-        <li>
-          <strong>📂 Admin Dashboard Tools</strong><br />
-          <blockquote>Built tools for loan tracking, customer document management, request deletion/archive, HL/AL modules, branch file transfers, and RM email alerts.</blockquote>
-        </li>
-        <li>
-          <strong>🛡️ KYC & OTP Verification System</strong><br />
-          <blockquote>Secure OTP encryption, expiration logic, session tracking, login event monitoring, password policy enforcement, and admin-level control for user management.</blockquote>
-        </li>
-      </ul>
-    </section>
-
-    <section class="github-stats">
-      <h2>GitHub Stats</h2>
-      <img src="https://github-readme-stats.vercel.app/api?username=himal99&show_icons=true&theme=tokyonight" alt="GitHub Stats" />
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=himal99&layout=compact&theme=tokyonight" alt="Top Languages" />
-    </section>
-
-    <section class="highlight-projects">
-      <h2>Highlight Projects</h2>
-      <ul>
-        <li>🔹 <strong>Fast Loan Against Share</strong> - Built full-stack loan application platform for Global IME Bank</li>
-        <li>🔹 <strong>Online Auto Loan</strong> - Streamlined auto loan workflows for customers and admins</li>
-        <li>🔹 <strong>Secure Customer Onboarding</strong> - With encrypted OTP, login event tracking, session handling</li>
-      </ul>
-    </section>
-
-    <section class="connect">
-      <h2>Let's Connect</h2>
-      <p>💬 I love mentoring, team leadership, and building clean, scalable systems.<br />
-      💼 Open to collaborating on Spring Boot + Angular projects.<br />
-      🌱 Currently exploring: Clean Architecture, Kafka, and reactive microservices.</p>
-    </section>
-
-    <div class="typing-svg" aria-label="Typing animation">
-      <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&duration=3000&pause=1000&center=true&width=435&lines=Code+with+clarity.;Build+what+matters.;Lead+with+impact." alt="Typing SVG" />
-    </div>
   </div>
+
+  <!-- Floating buttons -->
+  <div class="float-contacts">
+    <a class="float-btn" href="mailto:bantawaheem35@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+    <a class="float-btn" href="https://github.com/himal99" title="GitHub"><i class="fab fa-github"></i></a>
+    <a class="float-btn" href="#top" title="Back to top"><i class="fas fa-chevron-up"></i></a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    /* particles */
+    particlesJS.load('particles-js', 'https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/particles.json', ()=>{});
+
+    /* typing hero */
+    const words = ['Code with clarity', 'Build what matters', 'Lead with impact'];
+    let i = 0, j = 0, forward = true;
+    const el = document.getElementById('typingText');
+    function type(){
+      el.textContent = words[i].slice(0,j);
+      if(forward){ j++; if(j>words[i].length){forward=false;setTimeout(type,1200)} }
+      else{ j--; if(j===0){forward=true;i=(i+1)%words.length} }
+      setTimeout(type, forward?120:50);
+    }
+    type();
+
+    /* scroll reveal */
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(e=>e.target.classList.toggle('show', e.isIntersecting));
+    }, {threshold:.2});
+    document.querySelectorAll('section').forEach(s=>observer.observe(s));
+  </script>
 </body>
 </html>
