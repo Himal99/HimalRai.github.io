@@ -6,21 +6,32 @@
   <title>Himal Rai – Software Engineer</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    /* ---------- Reset ---------- */
+    /* ---------- CSS Variables (auto-flip) ---------- */
+    :root{
+      --bg:#0f172a;
+      --bg-card:#1e293b;
+      --text:#e2e8f0;
+      --accent:#60a5fa;
+      --border:#334155;
+    }
+    body.light{
+      --bg:#f8fafc;
+      --bg-card:#ffffff;
+      --text:#111827;
+      --accent:#2563eb;
+      --border:#d1d5db;
+    }
+
+    /* ---------- Base ---------- */
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{
       font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto;
-      background:#0f172a;
-      color:#e2e8f0;
-      line-height:1.6;
-      overflow-x:hidden;
+      background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s;
     }
 
     /* ---------- Particles ---------- */
-    #particles-js{
-      position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;
-    }
+    #particles-js{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1}
 
     /* ---------- Layout ---------- */
     .container{max-width:1000px;margin:0 auto;padding:2rem 1.5rem 6rem}
@@ -29,13 +40,9 @@
 
     /* ---------- Hero ---------- */
     .hero{text-align:center;padding:4rem 0}
-    .hero h1{font-size:3rem;color:#60a5fa}
-    .hero .subtitle{font-size:1.3rem;color:#94a3b8}
-    .typing{
-      color:#60a5fa;font-size:1.4rem;font-weight:600;
-      border-right:2px solid #60a5fa;white-space:nowrap;overflow:hidden;
-      animation:blink .8s infinite;
-    }
+    .hero h1{font-size:3rem;color:var(--accent)}
+    .hero .subtitle{font-size:1.3rem;color:var(--text);opacity:.8}
+    .typing{color:var(--accent);font-size:1.4rem;font-weight:600;border-right:2px solid var(--accent);white-space:nowrap;overflow:hidden;animation:blink .8s infinite}
     @keyframes blink{50%{border-color:transparent}}
 
     /* ---------- Badges ---------- */
@@ -43,66 +50,56 @@
     .badge img{height:28px;border-radius:4px;transition:.3s}
     .badge:hover img{transform:scale(1.1) rotate(-3deg)}
 
-    /* ---------- Skill badges animate ---------- */
+    /* ---------- Tech Cloud ---------- */
     .tech-cloud{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
-    .tech-cloud span{
-      background:#1e293b;color:#cbd5e1;padding:.4rem .9rem;border-radius:999px;
-      font-size:.85rem;transition:.3s;cursor:default
-    }
-    .tech-cloud span:hover{background:#2563eb;color:#fff;transform:translateY(-3px)}
+    .tech-cloud span{background:var(--bg-card);color:var(--text);padding:.4rem .9rem;border-radius:999px;font-size:.85rem;transition:.3s;cursor:default}
+    .tech-cloud span:hover{background:var(--accent);color:#fff;transform:translateY(-3px)}
 
     /* ---------- Timeline ---------- */
-    .timeline{position:relative;padding-left:2rem;border-left:2px solid #2563eb}
-    .timeline::before{
-      content:'';position:absolute;left:-9px;top:0;width:16px;height:16px;
-      background:#2563eb;border-radius:50%
-    }
+    .timeline{position:relative;padding-left:2rem;border-left:2px solid var(--accent)}
+    .timeline::before{content:'';position:absolute;left:-9px;top:0;width:16px;height:16px;background:var(--accent);border-radius:50%}
     .timeline-item{margin-bottom:2.5rem}
-    .timeline-date{color:#60a5fa;font-weight:700}
+    .timeline-date{color:var(--accent);font-weight:700}
 
-    /* ---------- Projects grid ---------- */
+    /* ---------- Projects Grid ---------- */
     .projects-grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-    .card{
-      background:#1e293b;border:1px solid #334155;border-radius:12px;padding:1.5rem;
-      transition:.3s;position:relative;overflow:hidden
-    }
-    .card:hover{transform:translateY(-5px);border-color:#60a5fa}
-    .card i{position:absolute;top:1rem;right:1rem;color:#60a5fa;font-size:1.5rem}
+    .card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:.3s;position:relative;overflow:hidden}
+    .card:hover{transform:translateY(-5px);border-color:var(--accent)}
+    .card i{position:absolute;top:1rem;right:1rem;color:var(--accent);font-size:1.5rem}
 
     /* ---------- Testimonials ---------- */
     .testimonials{display:flex;gap:1.5rem;overflow-x:auto;padding-bottom:1rem}
-    .testimonial{
-      min-width:260px;background:#1e293b;border-radius:12px;padding:1.5rem;
-      flex-shrink:0;border-left:4px solid #60a5fa
-    }
-    .testimonial .author{color:#94a3b8;font-size:.9rem}
+    .testimonial{min-width:260px;background:var(--bg-card);border-radius:12px;padding:1.5rem;flex-shrink:0;border-left:4px solid var(--accent)}
+    .testimonial .author{color:var(--text);opacity:.7;font-size:.9rem}
 
-    /* ---------- Floating contacts ---------- */
-    .float-contacts{
-      position:fixed;bottom:2rem;right:1.5rem;display:flex;flex-direction:column;gap:.8rem;z-index:10
+    /* ---------- Floating buttons ---------- */
+    .float-contacts{position:fixed;bottom:2rem;right:1.5rem;display:flex;flex-direction:column;gap:.8rem;z-index:10}
+    .float-btn{width:50px;height:50px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:.3s;box-shadow:0 4px 8px #0003}
+    .float-btn:hover{background:var(--bg-card);color:var(--accent);transform:scale(1.1)}
+
+    /* ---------- Theme Toggle ---------- */
+    #themeToggle{
+      position:fixed;top:1rem;right:1.5rem;background:var(--bg-card);color:var(--accent);
+      border:1px solid var(--border);border-radius:50%;width:46px;height:46px;
+      font-size:1.3rem;cursor:pointer;transition:.3s;z-index:11
     }
-    .float-btn{
-      width:50px;height:50px;border-radius:50%;background:#2563eb;color:#fff;
-      display:flex;align-items:center;justify-content:center;font-size:1.3rem;
-      transition:.3s;box-shadow:0 4px 8px #0003
-    }
-    .float-btn:hover{background:#1d4ed8;transform:scale(1.1)}
+    #themeToggle:hover{background:var(--accent);color:#fff}
 
     /* ---------- Responsive ---------- */
-    @media(max-width:600px){
-      .hero h1{font-size:2.2rem}
-      .typing{font-size:1.2rem}
-    }
+    @media(max-width:600px){.hero h1{font-size:2.2rem}.typing{font-size:1.2rem}}
   </style>
 </head>
 <body>
   <!-- particles -->
   <div id="particles-js"></div>
 
+  <!-- Theme Toggle -->
+  <button id="themeToggle" title="Toggle theme"><i class="fas fa-sun"></i></button>
+
   <div class="container">
     <!-- Hero -->
     <section class="hero">
-      <h1>Hi, I'm <span style="color:#60a5fa">Himal Rai</span></h1>
+      <h1>Hi, I'm <span style="color:var(--accent)">Himal Rai</span></h1>
       <p class="subtitle">Senior Software Engineer | Java & Angular</p>
       <p class="typing" id="typingText"></p>
 
@@ -191,16 +188,6 @@
       </div>
     </section>
 
-    <!-- Blog -->
-    <section>
-      <h2><i class="fas fa-blog"></i> Recent Posts</h2>
-      <ul>
-        <li><a href="#">Clean Architecture in Spring Boot – 2025 edition</a></li>
-        <li><a href="#">Migrating Monoliths to Reactive Microservices</a></li>
-        <li><a href="#">Angular Signals & Fine-grained Reactivity</a></li>
-      </ul>
-    </section>
-
     <!-- Connect -->
     <section>
       <h2><i class="fas fa-handshake"></i> Let’s Connect</h2>
@@ -209,7 +196,6 @@
         🌱 Currently exploring <strong>Clean Architecture, Kafka, and Reactive Microservices</strong>.
       </p>
     </section>
-
   </div>
 
   <!-- Floating buttons -->
@@ -223,25 +209,43 @@
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
     /* particles */
-    particlesJS.load('particles-js', 'https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/particles.json', ()=>{});
+    particlesJS.load('particles-js', 'https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/particles.json');
 
     /* typing hero */
     const words = ['Code with clarity', 'Build what matters', 'Lead with impact'];
-    let i = 0, j = 0, forward = true;
-    const el = document.getElementById('typingText');
+    let i=0,j=0,forward=true;
+    const el=document.getElementById('typingText');
     function type(){
-      el.textContent = words[i].slice(0,j);
-      if(forward){ j++; if(j>words[i].length){forward=false;setTimeout(type,1200)} }
-      else{ j--; if(j===0){forward=true;i=(i+1)%words.length} }
+      el.textContent=words[i].slice(0,j);
+      if(forward){j++;if(j>words[i].length){forward=false;setTimeout(type,1200)}}
+      else{j--;if(j===0){forward=true;i=(i+1)%words.length}}
       setTimeout(type, forward?120:50);
     }
     type();
 
     /* scroll reveal */
-    const observer = new IntersectionObserver(entries=>{
-      entries.forEach(e=>e.target.classList.toggle('show', e.isIntersecting));
-    }, {threshold:.2});
-    document.querySelectorAll('section').forEach(s=>observer.observe(s));
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>e.target.classList.toggle('show',e.isIntersecting));
+    },{threshold:.2});
+    document.querySelectorAll('section').forEach(s=>obs.observe(s));
+
+    /* Theme toggle */
+    const body=document.body;
+    const btn=document.getElementById('themeToggle');
+    const icon=btn.querySelector('i');
+    const saved=localStorage.getItem('theme');
+    if(saved==='light') enableLight(); else enableDark();
+    btn.addEventListener('click',()=>{
+      body.classList.contains('light')?enableDark():enableLight();
+    });
+    function enableDark(){
+      body.classList.remove('light');icon.className='fas fa-sun';
+      localStorage.setItem('theme','dark');
+    }
+    function enableLight(){
+      body.classList.add('light');icon.className='fas fa-moon';
+      localStorage.setItem('theme','light');
+    }
   </script>
 </body>
 </html>
